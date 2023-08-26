@@ -23,7 +23,10 @@ __weak void SYSTIMER_100HzTASK2(void)
 
 }
 
-
+/*
+ * timer callback
+ * placed inside ->  HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+ */
 void SYSTIMER_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == SYSTIMER_CHANNEL)
@@ -41,7 +44,6 @@ void SYSTIMER_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		case 0:
 			// 100hz Task 1
 			SYSTIMER_100HzTASK1();
-
 			break;
 		case 1:
 			// 100hz Task 2
@@ -68,6 +70,9 @@ void SYSTIMER_Init(void)
 	}
 }
 
+/*
+ * placed inside -> HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htimer);
+ */
 
 void SYSTIMER_GPIOInit(void)
 {

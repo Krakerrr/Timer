@@ -21,10 +21,11 @@
 											HAL_NVIC_EnableIRQ(TIM6_DAC_IRQn); \
 										} while(0U)
 
-extern TIM_HandleTypeDef hSYSTIMER;
+TIM_HandleTypeDef hSYSTIMER;
 
+void SYSTIMER_Start_IT(void);
 void SYSTIMER_Init(void);
-void SYSTIMER_GPIOInit(void);
+void SYSTIMER_GPIOInit(TIM_HandleTypeDef *htim);
 void SYSTIMER_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 void SYSTIMER_100HzTASK1(void);
 void SYSTIMER_100HzTASK2(void);

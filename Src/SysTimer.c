@@ -10,7 +10,7 @@
 
 __weak void SYSTIMER_200HzTASK(void)
 {
-//	runs before 100hz tasks
+	//	runs before 100hz tasks
 }
 
 __weak void SYSTIMER_100HzTASK1(void)
@@ -54,6 +54,14 @@ void SYSTIMER_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 }
 
+void SYSTIMER_Start_IT(void)
+{
+	if(HAL_TIM_Base_Start_IT(&hSYSTIMER) != HAL_OK)
+	{
+		Error_Handler();
+	}
+}
+
 void SYSTIMER_Init(void)
 {
 	hSYSTIMER.Instance 			= SYSTIMER_CHANNEL;
@@ -64,18 +72,17 @@ void SYSTIMER_Init(void)
 		Error_Handler();
 	}
 
-	if(HAL_TIM_Base_Start_IT(&hSYSTIMER) != HAL_OK)
-	{
-		Error_Handler();
-	}
 }
 
 /*
  * placed inside -> HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htimer);
  */
 
-void SYSTIMER_GPIOInit(void)
+void SYSTIMER_GPIOInit(TIM_HandleTypeDef *htim)
 {
-	__SYSTIMER_CLK_ENABLE();
-	__SYSTIMER_NVIC_ENABLE();
+	if( htim->Instance == SYSTIMER_CHANNEL)
+	{
+		__SYSTIMER_CLK_ENABLE();
+		__SYSTIMER_NVIC_ENABLE();
+	}
 }

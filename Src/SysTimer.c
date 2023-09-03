@@ -29,6 +29,16 @@ __weak void SYSTIMER_100HzTASK2(void)
  */
 void SYSTIMER_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	static uint8_t initiated = 0;
+	if(initiated)
+	{
+		SYSTIMER_Clock += 5;
+	}else
+	{
+		SYSTIMER_Clock = 0;
+		initiated = 1;
+	}
+
 	if (htim->Instance == SYSTIMER_CHANNEL)
 	{
 		static uint8_t counter = 0;

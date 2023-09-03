@@ -21,7 +21,8 @@
 											HAL_NVIC_EnableIRQ(TIM6_DAC_IRQn); \
 										} while(0U)
 
-TIM_HandleTypeDef hSYSTIMER;
+TIM_HandleTypeDef	hSYSTIMER;
+extern uint32_t 	SYSTIMER_Clock;
 
 void SYSTIMER_Start_IT(void);
 void SYSTIMER_Init(void);

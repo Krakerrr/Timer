@@ -12,7 +12,7 @@
 
 #define SYSTIMER_CHANNEL			TIM6
 #define SYSTIMER_PRESCALER			999
-#define SYSTIMER_PERIOD				250-1
+#define SYSTIMER_PERIOD				420-1
 #define __SYSTIMER_CLK_ENABLE()   	do { \
 											__HAL_RCC_TIM6_CLK_ENABLE(); \
 										} while(0U)

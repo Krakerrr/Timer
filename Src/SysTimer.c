@@ -29,15 +29,7 @@ __weak void SYSTIMER_100HzTASK2(void)
  */
 void SYSTIMER_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	static uint8_t initiated = 0;
-	if(initiated)
-	{
-		SYSTIMER_Clock += 5;
-	}else
-	{
-		SYSTIMER_Clock = 0;
-		initiated = 1;
-	}
+	SYSTIMER_Clock += 5;
 
 	if (htim->Instance == SYSTIMER_CHANNEL)
 	{
@@ -74,6 +66,7 @@ void SYSTIMER_Start_IT(void)
 
 void SYSTIMER_Init(void)
 {
+	SYSTIMER_Clock = 0;
 	hSYSTIMER.Instance 			= SYSTIMER_CHANNEL;
 	hSYSTIMER.Init.Prescaler 	= SYSTIMER_PRESCALER;
 	hSYSTIMER.Init.Period 		= SYSTIMER_PERIOD; // update events after reset

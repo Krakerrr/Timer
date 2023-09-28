@@ -60,7 +60,7 @@ void SYSTIMER_Start_IT(void)
 {
 	if(HAL_TIM_Base_Start_IT(&hSYSTIMER) != HAL_OK)
 	{
-		Error_Handler();
+		Error_Handler(E_SysTimerSTART_IT);
 	}
 }
 
@@ -72,7 +72,7 @@ void SYSTIMER_Init(void)
 	hSYSTIMER.Init.Period 		= SYSTIMER_PERIOD; // update events after reset
 	if( HAL_TIM_Base_Init(&hSYSTIMER) != HAL_OK)
 	{
-		Error_Handler();
+		Error_Handler(E_SysTimerInit);
 	}
 
 }
